@@ -1,0 +1,7 @@
+version = 1
+requires-python = ">=3.10, <4"
+
+[[package]]
+name = "certificate-scripts"
+version = "0.1.0"
+source = { virtual = "." }
