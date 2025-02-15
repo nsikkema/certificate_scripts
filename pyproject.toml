@@ -1,7 +1,28 @@
 [project]
 name = "certificate-scripts"
+classifiers = ["Private :: Do Not Upload"]
 version = "0.1.0"
-description = "Add your description here"
+description = "Simple non-robust scripts to handle creation of internal certificates"
 readme = "README.md"
 requires-python = "~=3.10"
 dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.6",
+]
+
+[tool.setuptools]
+py-modules = ["scripts"]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+include = ["pyproject.toml", "scripts/*.py", "scripts/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B", "SIM", "I"]
+
+[project.scripts]
+dummy = "scripts.dummy:main"
