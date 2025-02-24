@@ -1,0 +1,28 @@
+name: Lint Python
+on: [ pull_request ]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  commitlint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Filter
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            python:
+              - 'uv.lock'
+              - 'pyproject.toml'
+              - '**/*.py'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Install the project
+        run: uv sync --dev
+      - name: Python Format Check
+        run: uv run ruff format --diff
+      - name: Python Lint Check
+        run: uv run ruff check --output-format=github
