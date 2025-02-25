@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Scratch folder
+scratch
+!scratch/.gitkeep
+
+# Misc
+.DS_Store
